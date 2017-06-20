@@ -1,5 +1,5 @@
 # CoreArena
-CoreArena is a premium quality Bukkit bukkit that brings a whole new experience to your Minecraft server in the form of a monster fight arena. Its unique approach is determined by
+CoreArena is a premium quality Bukkit plugin that brings a whole new experience to your Minecraft server in the form of a monster fight arena. Its unique approach is determined by
 
 * a realistic physical engine allowing you to fully destroy arenas (differently) each time you play.
 * class upgrades and reward system based on a currency players receive while playing in the arena and that is stored outside the arena.
