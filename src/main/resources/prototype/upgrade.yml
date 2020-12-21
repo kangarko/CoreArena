@@ -1,0 +1,15 @@
+# !-----------------------------------------------------------------------------------------!
+#                   Welcome to the upgrade additional settings file. 
+#                           Here you can set additional parameters for this upgrade.
+# !-----------------------------------------------------------------------------------------!
+
+#
+# Uncomment to only allow players with the specified permission
+# to access this class.
+#
+Permission: "{plugin_name}.class.{file_lowercase}"
+
+#
+# From which phase is this upgrade available?
+#
+Available_From_Phase: 1

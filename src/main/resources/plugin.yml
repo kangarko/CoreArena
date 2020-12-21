@@ -1,0 +1,20 @@
+name: ${project.artifactId}
+main: ${main.class}
+version: ${project.version}
+api-version: 1.13
+author: kangarko
+softdepend: [AuthMe, Boss, BungeeChatAPI, DiscordSRV, Factions, Feudal, Essentials, LegacyFactions, LuckPerms, MVdWPlaceholderAPI, Multiverse-Core, Nicky, PlaceholderAPI, ProtocolLib, SimpleClans, Towny, TownyChat, Vault, WorldEdit]
+#
+# The commands are built at runtime so you can change them easily within the settings.
+# Do not change anything in here, you will break the plugin and get no support.
+#
+commands: 
+permissions:
+  confiscate.command.join:
+    default: true
+  confiscate.command.leave:
+    default: true
+  confiscate.command.list:
+    default: true
+  confiscate.command.rewards:
+    default: true

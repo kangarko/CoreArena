@@ -1,0 +1,441 @@
+# !-----------------------------------------------------------------------------------------!
+#
+#                              Welcome to the localization file
+#
+# -------------------------------------------------------------------------------------------
+#
+#  This file contains most of the visual messages and notification player receives
+#  while interacting with this plugin. Simply edit them as you like and apply changes
+#  by restarting the server or reloading the plugin.
+#
+#  To not display a message, set it to 'none'
+#
+#  Messages supports variables in brackets {} and color codes with & character
+# !-----------------------------------------------------------------------------------------!
+
+# -------------------------------------------------------------------------------------------
+# Arena-related messages.
+# -------------------------------------------------------------------------------------------
+Arena:
+  #
+  # Shown when an action is prevented during arena editing
+  #
+  Action_Denied_While_Editing: '&cFor safety reasons, finish editing your arena first! Run /arena edit {arena}'
+  #
+  # Error-related messages
+  #
+  Error:
+    Not_Enabled: '&cThe arena {arena} is not enabled.'
+    Not_Found: '&cThe arena ''{arena}'' does not exist!'
+    Not_Ready: '&cThe arena is not yet configured!'
+    No_Permission: "&cYou need '{perm}' to join this arena!"
+    Edited: '&cThe {arena} is currently being edited!'
+    Already_Playing: '&cYou are already playing in arena {arena}!'
+    Already_Running: '&cThe arena is already running, try again later!'
+    Full: '&cThe arena is full, try again later!'
+    No_Arena_At_Location: Could not find an arena by your location. Please specify the arena name.
+    Inventory_Not_Empty: '&cPlease clear your inventory before joining!'
+    Cannot_Run_Command_In_Arena: '&cThis command is disallowed while playing!'
+  #
+  # Setup-related messages
+  #
+  Setup:
+    Cannot_Edit: '&cTo edit the arena, please enter its setup mode.'
+    Cannot_Clone: '&cCannot clone visualized blocks!'
+    Clone_Mob_Spawnpoint_Unknown: '&cThe selected block is not a mob spawnpoint!'
+  #
+  # Messages shown in the lobbly
+  #
+  Lobby:
+    Join_Player: '&7Welcome to &6{arena}&7. We are starting in &6{time}&7.'
+    Join_Others: '&6{player} &7joined the lobby ({players}/{maxPlayers})!'
+    Start_Countdown: '&6Get ready! &7Arena {arena} starts in {seconds}!'
+    Not_Enough_Players: '&c{arena} could not start due to too few players ({players}/{minPlayers})!'
+    Kick_No_Class: '&cYou have not selected any class, and we couldn''t find you a suitable one!'
+    Tier_Too_Low: '&7The arena requires at least &6Tier {arenaTier} &7on classes, while you only have &6Tier {classTier} &7on this class.'
+  #
+  # Messages shown during the gameplay
+  #
+  Game:
+    Start: '&7The game in &6{arena} &7has begun ({players}/{maxPlayers})!'
+    End_Countdown: '&6Watch out! &7Arena {arena} ends in {seconds}!'
+    End: '&6&lGG! &7The game in &6{arena} &7has finished!'
+    End_Last_Player: '&7The arena has &6ended &7because you were the last player left!'
+    Death_Broadcast: '&c{player} has died! ({deaths}/{lifes_max})'
+    Death_To_Victim: '&cYou have died and have {lifes_left} left.'
+    Kick_Death_Broadcast: '&c{player} has died for the last time and leaves the game!'
+    Kick_Death_To_Victim: '&cYou have died and have no more lifes left, better luck next time!'
+    Kill_Broadcast: '&6{player} &7has been killed by &6{killer} &7({lifes_left}/{lifes_max})'
+    Kill_To_Victim: '&7You have been killed and have &6{lifes} &7left.'
+    Kick_Kill_Broadcast: '&6{killer} &7has killed &6{player}&7! {players} player(s) left!'
+    Kick_Kill_To_Victim: '&7You have been killed by &6{killer} &7and the game has ended for you! Better luck next time {player}!'
+    Class_Auto_Assigned: '&7You did not select any class and were given the class &6{class}&7.'
+    Friendly_Fire_Activated: '&cWatch out! &6PvP &7has been enabled!'
+    Explosive_Arrow_No_Ammo: '&7You lack &cExplosive Arrows&7 to shoot from this bow.'
+  #
+  # Arena states
+  #
+  State:
+    Stopped: '&4Stopped'
+    Lobby: '&6Launching'
+    Running: '&2Running'
+
+# -------------------------------------------------------------------------------------------
+# Experience is what player receives while playing in the arena. This is converted
+# into the Currency (see below) when player leaves the arena.
+# -------------------------------------------------------------------------------------------
+Experience:
+  Next_Phase: '&7Received &6{amount}&7 exp for surviving the {phase}. phase!'
+  Pickup: '&6You have now &7{level} &6and &7{exp}&6.'
+
+# -------------------------------------------------------------------------------------------
+# Player may purchase various upgrades while playing in the arena.
+# -------------------------------------------------------------------------------------------
+Upgrades:
+  Locked: '&7This upgrade is available from the &6{phase}. phase&7!'
+  Lack_Levels: '&7You lack &6{levels} &7to afford this upgrade.'
+  Lack_Space: '&6Your inventory lacks space! Dropping rest of the items on the floor.'
+  Successful_Purchase: '&aPurchased: &7{upgrade} for {levels}!'
+
+# -------------------------------------------------------------------------------------------
+# The bossbar, by default, shows which phase the arena is currently in.
+# -------------------------------------------------------------------------------------------
+Bossbar:
+  Title: Phase {phase}
+  Next_Phase: '&6&lArena Entered the &4&l{phase} &6&lPhase'
+  #
+  # Available. pink, blue, red, green, yellow, purple, white
+  #
+  Color:
+    Start: GREEN
+    Mid: BLUE
+    Near_End: RED
+
+# -------------------------------------------------------------------------------------------
+# Messages specifically for a phase (a wave).
+# -------------------------------------------------------------------------------------------
+Phase:
+  Next_Phase_Wait: '&6Prepare yourself! The next phase starts in {delay} seconds.'
+  #
+  # Messages when arena reaches its max phase (it will still continue to play).
+  #
+  Max_Phase:
+    Text: '&6&lArena reached its maximum phase.'
+    # Usage: <bukkitSoundName>, <volume>, <pitch>
+    # If you have Minecraft 1.8.x and older, use sound names from: https://goo.gl/ArzbZA
+    # Set to "none" to disable.
+    Sound: ENTITY_FIREWORK_BLAST, 1F, 1F
+
+# -------------------------------------------------------------------------------------------
+# The title bar in the middle of the player's screen
+# -------------------------------------------------------------------------------------------
+Title:
+  Kick:
+    Title: '&cGame over'
+    Subtitle: '&7Thank you for playing in {arena}'
+  Escape:
+    Title: '&cGame over'
+    Subtitle: '&7You abandoned the {arena} area'
+
+# -------------------------------------------------------------------------------------------
+# The in-game currency gives players the opportunity to buy rewards after they
+# have played in the arena. The currency is earned from experience received in the arena.
+# -------------------------------------------------------------------------------------------
+Currency:
+  Name: Nugget, Nuggets
+  Color: GOLD
+  Received: '&7You received &6{amount} &7and have &6{balance}. &7Go spend them on /arena rewards!'
+
+# -------------------------------------------------------------------------------------------
+# Localization for the in-game menus
+# -------------------------------------------------------------------------------------------
+Menu:
+  Cannot_Open_In_Arena: '&cCannot open menu while playing in an arena!'
+  Cannot_Open_Outside_Arena: '&cThis menu is only accessible inside an arena!'
+  Cannot_Open_Outside_Lobby: '&cThis menu is only accessible in the lobby!'
+  Use_Class_Menu: '&cPlease use the class menu to edit class upgrades'
+  #
+  # The /arena rewards menu
+  #
+  Rewards: 
+    Label: '&4Menu Rewards'
+    Individual_Label: Choose a Reward
+    Class_Not_Yet_Configured: '&c&oClass yet not configured!'
+    Select_Class: Select a class
+    Choose_Reward: Choose a Reward
+    More_Nuggets_Needed: '&4You need {reward_cost} Nuggets for this'
+    Bought_Reward: '&2Bought! Remaining: {remaining}'
+    Items_Label: Items
+    Items_Description: |-
+      &r
+      Purchase valuable items to
+      enhance your survival experience.
+    Blocks_Label: Blocks
+    Blocks_Description: |-
+      &r
+      Purchase blocks you can build
+      with while playing in survival.
+    Packs_Label: Packs
+    Packs_Description: |-
+      &r
+      Purchase reward packs or special
+      items only available here.
+    Class_Label: Upgrade Your Class
+    Class_Description: |-
+      &r
+      Upgrade your classes to
+      higher tiers here.
+    Info_Player: |-
+      Balance: &f{nuggets}
+      &r
+      You can spend them on rewards
+      in form of items or special packs.
+    Info_Admin: |-
+      &6Nuggets&7 that players receive in
+      arena, can be spent on rewards.
+      &r
+      You can configure the rewards here.
+    Info:
+      Edit:
+        Items:
+          - '&7To edit the rewards, simply'
+          - '&emove &7items from your inventory here.'
+        Pieces:
+          - '&eClick &7an item to set its price'
+      Purchase:
+        - '&7Balance: &f{balance}'
+        - ''
+        - '&7Click to make a purchase.'
+        - ' '
+        - '&7The item wil be saved to'
+        - '&7your inventory.'
+    Tier:
+      Already_Bought: '&2Thou already hast this tier!'
+      Maximum_Reached: '&2You have the maximum tier'
+      Too_High: '&4This tier is too high for you!'
+      Locked: '&cThis tier is locked'
+      Top: '&cThis is the top tier'
+      Next: '&dNext Tier ->'
+      Added: '&7Added Tier'
+      Purchased: '&6You have purchased {name} Tier {tier}'
+      Purchased_Menu_Title: '&2&lBought tier {tier}!'
+    Not_Set:
+      Helmet: '&7Helmet not set'
+      Chestplate: '&7Chestplate not set'
+      Leggings: '&7Leggings not set'
+      Boots: '&7Boots not set'
+
+# -------------------------------------------------------------------------------------------
+# Messages shown in the in-game commands.
+# -------------------------------------------------------------------------------------------
+Commands:
+  No_Console: '&cYou may only use this command as a player'
+  Disallowed_While_Playing: '&cThis command is disabled while you play in an arena.'
+  Invalid_Argument: '&cInvalid parameter. Run &6/{label} ? &cfor help.'
+  Invalid_Sub_Argument: '&cInvalid parameter. Run ''/{label} {0}'' for help.'
+  Invalid_Argument_Multiline: '&cInvalid parameter. Usage:'
+  Label_Description: '&cDescription: {description}'
+  Label_Usage: '&cUsage:'
+  Label_Usages: '&cUsages:'
+  Error: '&4&lOups! &cThe command failed :( Check the console and report the error.'
+  Join:
+    Suggest: Use '/{label} join <arena>' to join one.
+  Leave:
+    Not_Playing: '&cYou are not playing in any arena.'
+    Success: '&6You have abandoned the game in {arena}!'
+  Start:
+    Not_Lobby: '&cYou can only start arenas in lobby state. Use /{label} join first to join an arena.'
+    Success: '&6Forced start of the arena {arena}.'
+    Fail: '&cArena {arena} could not start, perhaps player limits were not met?'
+  Stop:
+    Already_Stopped: '&cThe arena {arena} is already stopped.'
+    Success: '&7The arena {arena} has been &cstopped.'
+  Menu:
+    Lookup_Failed: '&cObject ''{object}'' not found. Run &7/{label} {0}&c.'
+  Nuggets:
+    Specify_Player: '&cPlease specify the player name.'
+    Invalid_Parameter: '&cUnknown parameter ''{2}''. Available: {available}'
+    Invalid_Amount: '&cInvalid {currency_name} amount: {3}'
+    Balance: '&7You have &6{balance}'
+    Balance_Other: '&6{player} &7has &6{balance}'
+    Set: '&7Set &6{player}''s &7{currency_name} &7to &6{balance}'
+    Gave: '&6{player} &7was given {amount} and has &6{balance}'
+    Took: '&6{player} &7was taken {amount} and has &6{balance}'
+  Edit:
+    Arena_Running: '&cCannot edit running arenas. Please stop the arena first via &7/{label} stop {arena}&c.'
+    Already_Editing: '&cYou are already editing {arena}.'
+    Enabled: '&7Arena {arena} is now in &aedit mode&7. Use /{label} tools to obtain setup tools.'
+    Disabled: '&7Arena {arena} is &cno longer in edit mode&7.'
+  Find:
+    Wrong_Syntax: '&cInvalid syntax! Enter &7player''s name&c, or &7world x y z&c, or just &7x y z'
+    Not_Found: '&cNo arena found at your location.'
+    Not_Found_Location: '&cNo arena found at {location}.'
+    Found: '&7Found the &2{arena}&7 arena at your location.'
+    Found_Other: '&7{player} is playing in the &2{arena}&7 arena.'
+    Found_Location: '&7Found &2{arena}&7 arena at {location}.'
+  Change_State: 
+    Disabled: '&6Successfully disabled arena &7{name}'
+    Enabled: '&6Successfully enabled arena &7{name}'
+  Reload_Success: '&7The plugin has been reloaded successfully.'
+  Reload_Fail: '&4Oups! &cReloading failed due to an error! See console for more information. &4Error: &c{error}'
+
+# -------------------------------------------------------------------------------------------
+# Server conversation is a dialog where player types information directly to the
+# game chat (without /, just the message) and the server will recognize and process it.
+# -------------------------------------------------------------------------------------------
+Conversation:
+  Invalid_Input: '&cInvalid input! Please follow instructions above.'
+  Stopped: '&cThe server conversation has been cancelled.'
+  Number_Help: '&cEnter a non-zero number, or type ''exit'' to exit.'
+  New:
+    Help: '&7Type &6the name&7 of the new {type}, or ''exit'' to stop.'
+    Already_Exists: '&cThis {type} already exists. Choose a different name.'
+    No_Spaces: '&cSpaces are not allowed in names. Use _ instead.'
+    Success: '&7A new &6{type} &7{name} has been created! Use /arena menu to edit it.'
+    Success_Arena: '&7A new &6arena &7{name} has been created. The arena has been put into the &eedit mode. &7Use /arena tools to edit it.'
+    Error: '&cAn unhandled error occured during adding new object.'
+  Tier:
+    Help: '&7Type &6the price&7 for {class} Tier {tier}, or ''exit'' to stop.'
+    Price_Set: '&7This tier is now worth &6{amount}&7.'
+  Reward:
+    Help: '&7Type &6the price&7 for this reward ({material}), or ''exit'' to stop.'
+    Price_Set: '&7This reward is now worth &6{amount}&7.'
+  Spawner_Minimum_Players:
+    Help: '&7Type &6the minimum amount&7 of players for this spawner to function.'
+    Set: '&7The spawner now requires at least &6{amount_players} &7to function.'
+  Spawner_Chance:
+    Help: '&7Type &6the chance&7 (in percent) for this spawner to spawn mobs, from 0 (never working) to 100 (always working).'
+    Set: '&7The spawner has now {chance}% chance of spawning when it turns on.'
+  Phase:
+    Input_Matcher: (from|between|on|till) ([0-9]{1,6})(((-)[0-9]{1,6})|)( phase|)
+    Help: |-
+      &7Type &owhen &7you want this spawner to function.
+      &7a) from the start till a phase: Type &6"till <phase>"
+      &7b) only on one phase: Type &6"on <phase>"
+      &7c) from a phase and forever after: Type &6"from <phase>"
+      &7d) between phases: Type &6"between <phase>-<endPhase>"
+    Set_From: '&7The spawner will function from the &6{period}. phase&7.'
+    Set_On: '&7The spawner will function on the &6{period}. phase&7.'
+    Set_Till: '&7The spawner will function till the &6{period}. phase&7.'
+    Set_Between: '&7The spawner will function between &6{period} phases&7.'
+
+# -------------------------------------------------------------------------------------------
+# Messages regarding various active signs that do actions when clicked.
+#
+# TIP: You can configure how the signs look like in the main settings.
+# -------------------------------------------------------------------------------------------
+Signs:
+  Removed_Outside_Arena: '&cThe sign is outside any arena, removing!'
+  Removed: '&7Registered sign in &6{arena} &7has been removed.'
+  Outside_Arena: '&cYou must place the sign within an arena!'
+  #
+  # Example: 'The class Warrior does not exist!'
+  #
+  Object_Not_Found: '&cThe {type} {line} doesn''t exist!'
+  Created: '&7Registered new sign for arena &6{arena}&7.'
+  Arena:
+    Help: |-
+      &7When making an arena sign, use the following syntax:
+      &6[arena] &f- makes the plugin recognize the sign
+      &6<name> &f- the arena name
+  Class:
+    Help: |-
+      &7When making a class sign, use the following syntax:
+      &6[class] &f- makes the plugin recognize the sign
+      &6<name> &f- the class name
+  Upgrade:
+    Cost_Missing: '&cSpecify the cost on the third line, example: 5, 20, ...'
+    Cost_Invalid: '&cOnly specify the level number, example: 5, 20, ...'
+    Help: |-
+      &7When making an upgrade sign, use the following syntax:
+      &6[upgrade] &f- makes the plugin recognize the sign
+      &6<name> &f- the upgrade name
+      &6<level> &f- the price, in levels
+  Power:
+    Type_Invalid: '&cThe trigger type {type} does not exist!'
+    Help: |-
+      &7When making a power sign, use the following syntax:
+      &6[power] &f- makes the plugin recognize the sign
+      &6<type> &f- when the redstone should be powered?
+               &fPossible: lobby (when lobby starts)
+                           &fstart (when arena starts)
+                           &fphase (on a new phase)
+                           &fend   (when arena ends)
+
+# -------------------------------------------------------------------------------------------
+# Player-related messages.
+# -------------------------------------------------------------------------------------------
+Player:
+  Never_Played: '&c{player} has never played on the server.'
+  Never_Played_Arena: '&c{player} has never played an arena.'
+  Not_Found: '&c{player} has not been found on the server.'
+  Not_Online: '&cPlayer named ''{player}'' is not online!'
+  Not_Playing: '&c{player} is not playing in any arena.'
+
+# -------------------------------------------------------------------------------------------
+# Class-related settings.
+# -------------------------------------------------------------------------------------------
+Class:
+  Selected: '&7Class &b{class} &7has been selected.'
+  No_Permission: '&cYou lack permission to use {class}!'
+  Not_Available: '&cArena {arena} does not support classes.'
+
+# -------------------------------------------------------------------------------------------
+# World-related messages.
+# -------------------------------------------------------------------------------------------
+World:
+  Not_Found: "&cWorld '{world}' doesn't exist!"
+
+# -------------------------------------------------------------------------------------------
+# Words that are changed depending of the context.
+# - In English, only the singular and plural forms is available.
+# - In flectic languages (e.g. Slovak), you may specify three cases: sekunda, sekundy, sekund
+# -------------------------------------------------------------------------------------------
+Cases:
+  Player: player, players
+  Level: level, levels
+  Exp: exp, exp
+  Nugget: Nugget, Nuggets
+  Hour: hour, hours
+  Minute: minute, minutes
+  Second: second, seconds
+  Life: life, lifes
+
+# -------------------------------------------------------------------------------------------
+# Various short words used multiple times across the plugin.
+# -------------------------------------------------------------------------------------------
+Parts:
+  Usage: '&cUsage: '
+  Amount: amount
+  State: 'State: '
+  Size: 'Size: &7'
+  Players: 'Players: &7'
+  None: none
+  Buy: Buy
+  Edit: Edit
+  Cost: Cost
+  Purchase: Purchase
+  Price: Price
+  
+Edit:
+  Saved_Changes: '&2Your changes have been saved.'
+  Menu:
+    Edited: '&eYou are editing {mode}'
+    Switch_Pieces: Click to switch to editing prices.
+    Switch_Items: Click to switch to editing items.
+
+# -------------------------------------------------------------------------------------------
+# The auto updater messages
+# -------------------------------------------------------------------------------------------
+Update:
+  Available: |-
+    &2A new version of &3CoreArena&2 is available.
+    &2Current version: &f{current}&2; New version: &f{new}
+    &2URL: &7https://www.spigotmc.org/resources/{resource_id}/.
+
+Data_Missing: '{name} lacks database information! Please only create {type} in-game! Skipping..'
+No_Permission: '&cInsufficient permission ({permission}).'
+
+# Internal version number. Do not change!
+Version: 1
+

@@ -1,0 +1,217 @@
+# !-----------------------------------------------------------------------------------------!
+#                        Welcome to the individual arena settings file.
+# !-----------------------------------------------------------------------------------------!
+
+# How many times can player be killed before he gets kicked out of the arena?
+# He will still receive the experience he got while playing.
+Lifes: 3
+
+# The minimum class tier that the player must have to play in this arena.
+Required_Class_Tier: 1
+
+# Allow players to join using their own equipment?
+# This disables "Required_Class_Tier" and will deny players selecting classes.
+Allow_Own_Equipment: false
+
+# Allow mobs to drop their natural drops such as equipment or bones for Skeletons?
+Natural_Drops: false
+
+# Should we randomize where players appear after their death? If false, players
+# will be spawned at the same spawnpoint as when the arena started.
+Random_Respawn_Location: false
+
+# Should we open the class selection menu when joining this arena lobby?
+Open_Class_Menu: true
+
+# Should we enable the procedural damage feature for this arena?
+# You must first install WorldEdit and take initial/damaged snapshots with it using
+# our /arena menu.
+Procedural_Damage: true
+
+# Should explosive arrows damage players?
+Explosive_Arrows_Damage_Players: true
+
+# When we should enter the next phase?
+# Available:
+# a) timer - next phase entered when the phase timer ends (see Duration.Phase)
+# b) monsters - next phase entered when all monsters are killed
+Next_Phase_Mode: timer
+
+# The warm-up period between switching phases
+Next_Phase_Wait: 10 seconds
+
+# Radius around the mob spawner to spawn the mobs, so they aren't stacked up at once place.
+Mob_Spread: 3
+
+# Set to true to allow monsters to burn in sunlight like in vanilla gameplay.
+# NB: Also controls if monsters can be set on fire by Fire Aspect enchant.
+Mob_Burn_On_Sunlight: false
+
+# To prevent lag, limit the total amounts of mob within the arena region.
+Mob_Limit: 100
+
+# Spawn monsters only if at least one player is nearby in the radius around a monster spawner below:
+Spawner_Activation_Radius: 40
+
+# Configure player limits
+Player_Limit:
+
+  # The minimum amount of players required for this arena to start.
+  Minimum: 2
+
+  # The maximum amount of players that may play together.
+  Maximum: 8
+
+# You can override the Experience.Amount section from settings here to make your arena give more/less exp.
+# Disabled by default. uncomment to make it working. See settings.yml for documentation.
+#Experience:
+#  Next_Phase: "5 + (5 * {phase})"
+#  Kill:
+#    Global: "10 + (5 * {phase})"
+#    Player: "30 + (6 * {phase})"
+#    CREEPER: "15 + (5 * {phase})"
+
+# Configure sounds during arena gameplay. Syntax: <name> <volume 0.0-1.0> <pitch 0.0-1.0>
+# See https://mineacademy.org/sound for valid sound names.
+Sound:
+  Player_Join: ARROW_HIT 1F 0.1F
+  Player_Leave: ENDERDRAGON_DEATH 0.9F 1F
+  Arena_Start: ENTITY_FIREWORK_LARGE_BLAST_FAR 1F 0.1F
+
+# Configure durations of arena parts (count-dows)
+Duration: 
+
+  # How long to wait before launching the arena, after the first
+  # player joined the lobby? By default it's 30 seconds.
+  Lobby: 30 seconds
+
+  # How long should one game last at maximum ? By default it's 5 minutes.
+  # The game may end sooner if there will be a winner.
+  Arena: 5 minutes
+
+  # How long should a phase vary?
+  Phase: 30 seconds
+
+# Configure player interaction with the arena.
+#
+# For material names (for blocks), please see
+# https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+Interaction:
+
+  # Should placing a TNT automatically ignite it? If false, TNTs cannot be placed unless in Allow_Placement list below.
+  Ignite_Tnts: true
+
+  # Should right clicking with bones automaticall spawn wolves?
+  Spawn_Wolves: true
+  
+  # Should right clicking with fireballs ignite them?
+  Launch_Fireballs: true
+
+  # List of blocks you wish the players may break.
+  Allow_Breaking:
+    - VINE
+    # In 1.13+, you need to specify all leave types manually like ACACIA_LEAVES, see https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html (search with CTRL+F)
+    - LEAVES
+    - LEAVES_2
+
+  # List of blocks you wish the players may place.
+  Allow_Placement:
+    - STONE_BUTTON
+    - WOOD_BUTTON
+
+  # If Arena.Auto_Repair_Items is true in settings.yml, here you can specify items that will still take damage
+  Disallow_Auto_Repair:
+    - GOLD_SWORD
+  
+# A phase is a single monster wave. Configure its settings here.
+# Settings with number are activated when the arena enters a certain phase.
+# Set to -1 to disable.
+Phase:
+
+  # This is the final phase. Arena ends when other conditions are met or the time is up.
+  Max_Phase: -1
+  
+  # From which phase can players kill each other?
+  PvP: -1
+  
+  # The initial snapshot also captures what's in your chests when the arena starts.
+  # You can set it up so the chests are refilled at certain phases, or each x-th phase.
+  #
+  # Usage:
+  # a) Refill only on certain phases:
+  #    Chest_Refill: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  #
+  # b) Refill each x-th phase. Here, chests are refilled each 5. phase.
+  #    Chest_Refill: 5
+  Chest_Refill: -1
+  
+  # Automatically stop the arena when there is equals or less then the specified players.
+  # MAKE SURE you set the players amount here to be higher or at least equals as the minimum players in arena!
+  Players_End: -1
+
+  # You can specify the final phase (the last wave) after which the arena ends, here.
+  Arena_End: -1
+
+  # After this phase the arena will end immediatelly when all monsters are killed.
+  Arena_End_No_Monsters: -1
+
+# Rewards to give on every nth wave or after a certain wave
+# This is a list containing either items:amounts or commands 
+Rewards: 
+  Every:
+    5: 
+    - "iron_ingot:16"
+    - "gold_ingot:8"
+    - "diamond:1"
+  At: 
+    10: 
+    - "iron_sword"
+    - "iron_pickaxe"
+    - "iron_spade"
+    
+    # You can execute commands from the console, too
+    #20: 
+    #- "/cc give physical dungeons 1 {player}"
+
+# Commands that are run automatically.
+# The 'Player' section contains commands run separately as each player (with their permissions),
+# and the 'Console' section contains commands run at once from the console.
+#
+# Useful information for sending commands as the player:
+# > Use "@tell <message>" to send messages to the player. Example:
+#   Player:
+#     - "@tell Hello there, {player}, thank you for playing in {arena}!"
+#
+# > There is a special command "@connect <server>" that will send player to another server,
+#   if you have a BungeeCord network. Replace <server> with the target server.
+Commands:
+  
+  # Commands run when the arena starts.
+  Start:
+    Player: []
+    Console: []
+
+  # Command run when the first player has joined the lobby and started arena countdown
+  Lobby_Start:
+    Player: []
+    Console: []
+
+  # Commands run when arena enters a new phase, {phase} (returns a number).
+  Phase:
+    Player: []
+    Console: []
+  
+  # Commands only run when the arena finishes gracefully (the lobby ended, game had started and then finished).
+  Finish: 
+    Player: []
+    Console: []
+
+  # Commands run when the arena ends for whatever reason (also run when the lobby ends due to last player disconnecting).
+  End:
+    Player: []
+    Console: []
+
+  # Commands run when a player leaves for whatever reason: disconnect, run out of lives, etc.
+  Player_Leave:
+    Player: []
+    Console: []
