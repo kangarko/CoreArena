@@ -5,6 +5,8 @@
   </a>
 </p>
 
+## Announcement: This plugin is now free of charge, you can download it in the "Releases" tab. See https://mineacademy.org/plugins for a list of all plugins we've open sourced.
+
 # CoreArena
 CoreArena is a premium quality Bukkit plugin that brings a whole new experience to your Minecraft server in the form of a monster fight arena. Its unique approach is determined by
 
