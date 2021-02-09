@@ -15,7 +15,7 @@ https://mega.nz/#F!FzRBQJDb!eDg6i4NYGt7zl30NPQ3aIQ
 
 * Realistic physical engine making arenas fully destroyable.
 * Class upgrades and reward system. Can by synchronized over MySQL (and across BungeeCord).
-* Well-made menus anda  powerful user interface in-game.
+* Well-made menus and a  powerful user interface in-game.
 * Unique monster spawner options (clickable using a GUI).
 * 5 minutes setup with visual creation without complicated config files.
 * Fully automated, no admin required to manage games.
