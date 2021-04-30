@@ -55,6 +55,8 @@ import org.mineacademy.game.type.NextPhaseMode;
 import org.mineacademy.game.type.SpawnPointType;
 import org.mineacademy.game.type.StopCause;
 
+import lombok.Getter;
+
 public final class SimplePhaseIncremental implements ArenaPhase {
 
 	private final Arena arena;
@@ -67,6 +69,8 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 	private int phase = 1;
 
 	private boolean startedToCountNextPhase = false;
+
+	@Getter
 	private int waitedBetweenNextPhase = 0;
 
 	public SimplePhaseIncremental(Arena arena) {

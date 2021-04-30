@@ -43,4 +43,11 @@ public interface ArenaPhase {
 	 * Typically, this only resets boss bar. Monsters are not removed, this is handled within the arena on its stop.
 	 */
 	void stopAndReset();
+
+	/**
+	 * How many seconds we passed till the next phase?  
+	 * 
+	 * @return
+	 */
+	int getWaitedBetweenNextPhase();
 }
