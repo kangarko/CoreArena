@@ -18,7 +18,6 @@ import org.mineacademy.fo.Valid;
 import org.mineacademy.fo.debug.Debugger;
 import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.model.HookManager;
-import org.mineacademy.fo.model.SpigotUpdater;
 import org.mineacademy.fo.model.Variables;
 import org.mineacademy.fo.plugin.SimplePlugin;
 import org.mineacademy.fo.remain.CompMonsterEgg;
@@ -256,10 +255,10 @@ public final class CoreArenaPlugin extends SimplePlugin implements ArenaPlugin {
 		return Arrays.asList(Settings.class, Localization.class);
 	}
 
-	@Override
+	/*@Override
 	public SpigotUpdater getUpdateCheck() {
 		return new SpigotUpdater(42404);
-	}
+	}*/
 
 	@Override
 	public int getFoundedYear() {
