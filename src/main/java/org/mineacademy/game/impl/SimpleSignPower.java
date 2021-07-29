@@ -54,7 +54,7 @@ public final class SimpleSignPower extends SimpleSign {
 
 			@Override
 			public void run() {
-				getLocation().getBlock().setType(CompMaterial.WALL_SIGN.getMaterial());
+				getLocation().getBlock().setType(CompMaterial.OAK_WALL_SIGN.getMaterial());
 				Valid.checkBoolean(getLocation().getBlock().getState() instanceof Sign, "Power sign failed to reset. Ended up with " + getLocation().getBlock().getType());
 
 				setSign((Sign) getLocation().getBlock().getState());
