@@ -50,7 +50,7 @@ public final class SpawnedEntity implements ConfigSerializable {
 			if (eggMap instanceof Map)
 				if (((Map<?, ?>) eggMap).containsKey("meta") && !(((Map<?, ?>) eggMap).get("meta") instanceof ItemMeta)) {
 					map.remove("custom_egg");
-					Common.log("Warning: Detected invalid custom egg in one of your spawners, replacing with sheep.");
+					Common.warning("Detected invalid custom egg in one of your spawners, replacing with sheep.");
 
 					return new SpawnedEntity(EntityType.SHEEP, 1);
 				}

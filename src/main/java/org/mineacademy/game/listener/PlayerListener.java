@@ -103,6 +103,7 @@ public class PlayerListener implements Listener {
 			CoreArenaPlugin.getSetupManager().removeEditedArena(data.getSetupCache().arena);
 
 		MySQLDatabase.save(data, true);
+
 		CoreArenaPlugin.trashDataFor(pl);
 	}
 }

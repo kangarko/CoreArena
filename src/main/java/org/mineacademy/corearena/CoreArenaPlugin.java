@@ -139,7 +139,7 @@ public final class CoreArenaPlugin extends SimplePlugin implements ArenaPlugin {
 		CoreHookManager.loadCoreDependencies();
 
 		if (!HookManager.isWorldEditLoaded() && MinecraftVersion.atLeast(V.v1_13))
-			Common.log("&eWarning: &fNo WorldEdit detected. It is required for procedural damage and arena snapshots.");
+			Common.warning("No WorldEdit detected. It is required for procedural damage and arena snapshots.");
 
 		if (CoreHookManager.isBossLoaded() || CoreHookManager.isMythicMobsLoaded())
 			CompMonsterEgg.acceptUnsafeEggs = true; // Our scientific research detected users being lazy to set this value in their config manually

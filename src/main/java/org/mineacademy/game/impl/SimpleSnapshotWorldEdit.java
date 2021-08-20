@@ -103,7 +103,7 @@ public final class SimpleSnapshotWorldEdit extends ArenaSnapshotProcedural {
 
 		// Warn for broken files
 		if (file.length() == 0) {
-			Common.log("Warning: " + stage + " schematic file for arena " + getArena().getName() + " had 0 size and was removed!");
+			Common.warning(stage + " schematic file for arena " + getArena().getName() + " had 0 size and was removed!");
 
 			file.delete();
 			return null;

@@ -276,7 +276,7 @@ public class MenuRewards extends Menu {
 				return mode == MenuMode.PURCHASE || mode == MenuMode.EDIT_PRICES ? ItemCreator
 						.of(reward.getItem().clone())
 						.lores(lore)
-						.build().makeSurvival() : reward.getItem();
+						.build().make() : reward.getItem();
 			}
 
 			if (slot == getSize() - 5)
