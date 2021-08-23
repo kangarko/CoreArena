@@ -23,6 +23,14 @@ public final class Settings extends SimpleSettings {
 		return 5;
 	}
 
+	/**
+	 * @see org.mineacademy.fo.settings.YamlConfig#saveComments()
+	 */
+	@Override
+	protected boolean saveComments() {
+		return false;
+	}
+
 	public static final class Arena {
 
 		public static Boolean STORE_INVENTORIES = false;
