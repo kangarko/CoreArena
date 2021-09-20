@@ -531,7 +531,7 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 				return newLoc;
 		}
 
-		return newLoc;
+		return newLoc.add(0.5, 0, 0.5);
 	}
 
 	private int getPositiveOrNegRandom() {
