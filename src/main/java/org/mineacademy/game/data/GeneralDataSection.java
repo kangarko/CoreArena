@@ -29,8 +29,6 @@ public final class GeneralDataSection extends YamlSectionConfig {
 
 	public void setSnapshotNotified() {
 		save("Notified_Snapshot", true);
-
-		onLoadFinish();
 	}
 
 	public void setPendingLocation(UUID id, Location loc) {

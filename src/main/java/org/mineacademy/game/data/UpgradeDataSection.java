@@ -57,14 +57,10 @@ public final class UpgradeDataSection extends YamlSectionConfig {
 
 	public void setArenaClass(ArenaClass clazz) {
 		save("Class", clazz != null ? clazz.getName() : null);
-
-		onLoadFinish();
 	}
 
 	public void setItems(ItemStack[] items) {
 		save("Items", items);
-
-		onLoadFinish();
 	}
 
 	public String getUpgradeName() {

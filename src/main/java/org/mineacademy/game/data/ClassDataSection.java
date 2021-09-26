@@ -110,7 +110,6 @@ public final class ClassDataSection extends YamlSectionConfig {
 
 	private void saveAndReload() {
 		save("Tiers", tiers);
-		loadTiers();
 	}
 
 	public String getClassName() {

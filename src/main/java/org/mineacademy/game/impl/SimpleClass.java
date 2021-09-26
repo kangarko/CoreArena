@@ -138,15 +138,11 @@ public final class SimpleClass extends YamlConfig implements ArenaClass {
 	@Override
 	public void addOrUpdateTier(ClassTier tier) {
 		dataSection.saveUpdatedTier(tier);
-
-		onLoadFinish();
 	}
 
 	@Override
 	public void removeTier(ClassTier tier) {
 		dataSection.removeTier(tier);
-
-		onLoadFinish();
 	}
 
 	@Override
