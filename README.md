@@ -15,8 +15,8 @@ CoreArena is a premium quality Bukkit plugin with destroyable arenas to bring a 
 * Simple and straightforward setup with visual creation, no more complicated configs.
 * Fully automated, no admin required to manage games.
 
-Check out https://mineacademy.org/corearena for more information.
-
 You are welcome to read the **[CoreArena Wikipedia](https://github.com/kangarko/CoreArena/wiki)**, where you fill find tons of information about the installation, configuring and using this plugin.
 
 If you have any **questions or bugs to report**, try seeing if [those can be resolved quickly](https://github.com/kangarko/CoreArena/wiki/Common-Issues) by yourself. If that does not help, you are welcome to **fill an issue**. Please read the [Getting Help the Best Way](https://github.com/kangarko/CoreArena/wiki/Getting-Help-the-Right-Way) to obtain help as quickly as possible.
+
+Get it here: https://www.mc-market.org/resources/21643/
