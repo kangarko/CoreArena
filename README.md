@@ -1,7 +1,7 @@
 <p align="center">
   Do you want to code your own CoreArena?<br>
   <a href="https://mineacademy.org/gh-join">
-    <img src="https://i.imgur.com/HGc2VG3.png" />
+    <img src="https://i.imgur.com/TgLAJUg.png" />
   </a>
 </p>
 
