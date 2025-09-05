@@ -1,0 +1,34 @@
+# !-----------------------------------------------------------------------------------------!
+#                     Welcome to the individual class settings file.
+# !-----------------------------------------------------------------------------------------!
+
+#
+# Uncomment to only allow players with the specified permission
+# to access this class.
+#
+Permission: "corearena.class.{file_lowercase}"
+
+#
+# You can configure advanced options for each tier of this class.
+#
+Tiers:
+  #
+  # In this case, we are setting specific option for the Tier II.
+  #
+  2:
+    #
+    # Which potions shall the player obtain at the arena start?
+    # For potion names, ses https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
+    #
+    # Format: <potion name> <level>: <duration>
+    #
+    Potions:
+      SPEED 2: 30 seconds
+
+    #
+    # Which permission should be given to the player while he has this tier?
+    # For example, you can add permissions from other plugins.
+    #
+    Permissions:
+      - custom.permission
+      - another.random.permission

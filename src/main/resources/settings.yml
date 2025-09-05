@@ -1,0 +1,373 @@
+# !-----------------------------------------------------------------------------------------!
+#                     Welcome to ${project.name}'s main configuration
+#
+#   This settings file holds all the major options that apply overall in your gameplay.
+#
+#   1) If you'd like to customize individual arena/class/upgrade/.. edit their appropriate
+#      file.
+#
+#   2) If you'd like to edit messages like 'Arena starts in ...', create a new folder
+#      named "localization" within ${project.name} folder and restart your server.
+#      Your localization will be copied there and be ready to be customized.
+#
+# !-----------------------------------------------------------------------------------------!
+
+# -------------------------------------------------------------------------------------------
+# Configure the global options for every arena.
+# -------------------------------------------------------------------------------------------
+Arena:
+
+  # Save player's inventory and give it back when they finish playing? If false, players will
+  # be required to have empty inventory before joining.
+  # Inventories are stored in inventories.yml to support server reloading when players quit.
+  Store_Inventories: true
+
+  # If the arena allows players to join with their own equipment (has "Allow_Own_Equipment" to true),
+  # should the equipment remain in players' inventory when they die? Otherwise it'll be dropped.
+  Keep_Own_Equipment_On_Death: true
+
+  # If the player is found in any arena upon joining, teleport him to spawn (or to his previous location)?
+  Move_Forgotten_Players: true
+
+  # Should people who did not select their class be tried to be given a random one they
+  # have the permission for? If this fails, then we will kick them. If you have this on false,
+  # we will kick them right away when the arena starts and they yet did not select a class manually.
+  Give_Random_Class_If_Not_Selected: true
+
+  # If true, items such as swords or bows won't be destroyed and their durability will be
+  # unlimited while used in the arena. **NEEDS SERVER RESTART**
+  Auto_Repair_Items: false
+
+  # Show the arena phase in the boss bar?
+  Display_Phase_Bar: true
+
+  # Show the mob's health in the action bar?
+  Display_Mob_Health_Bar: true
+
+  # Do not show death messages in chat when the player dies in the arena?
+  Hide_Death_Messages: true
+
+  # If true, the commands in "Commands.x.Console" in each arena .yml file will run for each player
+  # separately (with console privilegies). If false, they are only run once from the console.
+  #
+  # Set to true to enable player-related placeholders in that command list.
+  # Even if this is false, you can still use "Commands.x.Player" for each player.
+  Console_Commands_For_Each: false
+
+  # Which commands can players run while playing in the arena?
+  Allowed_Commands:
+    - /arena
+    - /ma
+    - /tell
+    - /msg
+    - /r
+    - /ping
+    - /tps
+    - /lag
+    - /warn
+    - /kick
+    - /tempban
+    - /tempmute
+    - /chc ach # In case you have ChatControl, allow admin chat
+    - /chc g # In case you have ChatControl, allow global chat
+
+  # Should ${project.name} put all players into a special chat room when they play?
+  Chat:
+
+    # Enable per-arena chat here.
+    Enabled: true
+
+    # Should we only allow other players within the same arena too see the message?
+    # If false, and you still want to send a message to all players, prepend it with an "!".
+    #
+    # Give players corearena.chat.global permission to let them prepend messages with "!" to send to non-arena players. 
+    # NOTICE: If using ChatControl, configure CoreArena integration in Integration section of settings.yml
+    Ranged: true
+
+    # Specify the arena chat outlook here.
+    # Variables: {arena} - arena, {player} - the player, {operatorColor} - red color when OP, {message} - the message
+    #            Or use PlaceholderAPI for more variables.
+    Format: "&3{player} &8> {operatorColor}{message}"
+    
+    # Specify the global arena chat outlook here (see Global_Chat). For variables, see the comment above.
+    Global_Format: "&8[&3{arena}&8] {operatorColor}{player}: &f{message}"
+
+  # Support for other plugins.
+  Integration:
+
+    # Disallow players leveling up or getting mcMMO's exps while playing in an arena?
+    Block_McMMO_Experience: true
+
+    # Prevent players leveling up in the Jobs plugin?
+    Block_Jobs_Level_Up: true
+
+# -------------------------------------------------------------------------------------------
+# Experience is the key essential to the arena experience. While playing in an arena,
+# players receive experience points for killing monsters and lasting longer alive.
+#
+# After the arena is finished, gained experience levels are converted to Nuggets,
+# that players may spend on rewards or class upgrades.
+# -------------------------------------------------------------------------------------------
+Experience:
+
+  # Controls how we should handle the experience point item.
+  # false = we drop the experience as an item
+  # true = we give the experience to the killer directly (if the entity died by a block
+  # or other causes, the item is still dropped)
+  Give_To_Killer: false
+
+  # How much experience does one level consists of?
+  # The level here is the level that player obtains while playing in the arena.
+  # The experience is the bar above hotbar in your Minecraft just as normal XP.
+  Exp_Per_Level: 30
+
+  # How much is 1 Level obtained in arena worth in Nuggets? (Will be rounded.)
+  # By default it's 0.5, which means that 20 Levels = 10 Nuggets.
+  Level_To_Nugget_Conversion_Ratio: 0.5
+
+  # Give Nuggets to player who left by disconnecting, click a sign or a command?
+  Reward_On_Escape: true
+
+  # When a monster or player is killed, an experience item is dropped next to them
+  # unless Give_To_Killer is true. You may customize the item here.
+  #
+  # Available item material names: 
+  # https://github.com/kangarko/Foundation/blob/master/src/main/java/org/mineacademy/fo/remain/CompMaterial.java
+  #
+  # Set to 'none' to disable dropping items.
+  Item: LIGHT_BLUE_DYE
+  Item_Label: "&b{amount} exp"
+
+  # The Gold is a special item allowing you to convert from Nuggets directly
+  # into your economy money plugin such as iConomy. Vault required.
+  # Get it via /arena items
+  Gold:
+
+    # How much is 1 piece of Gold worth in your economy plugin?
+    Conversion_Ratio: 100
+
+    # In case Vault returns an empty currency, you can specify its name here.
+    Currency_Backup_Name: "$"
+
+  # How much and when should players receive experience? (This is only experience, but it will
+  # be split into levels if it exceeds Exp_Per_Level (see above))
+  Amount:
+  
+    # A mathematical expression calculating the amount of experience given on each next phase.
+    # Default: give 5 + 5 exp multiplied by the phase (10 points on the second phase, ..)
+    Next_Phase: "5 + (5 * {phase})"
+
+    # Experience for killing.
+    Kill:
+    
+      # The experience applied for all mobs if not specified below.
+      Global: "10 + (5 * {phase})"
+      
+      # Experience for killing players
+      Player: "30 + (6 * {phase})"
+
+      # If you use Boss or MythicMobs, you can specify rewards for bosses you created there.
+      #"Elite Skeleton": "100 + 10 * {phase}"
+
+      # You may specify custom experience for different mobs. For mob names, see
+      # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+      # *USE CASE SENSITIVE NAMES!*
+      #ZOMBIE: "12 + 5 * {phase}"
+      #GHAST: "40 + 5 * {phase}"
+      CREEPER: "15 + (5 * {phase})"      
+
+# -------------------------------------------------------------------------------------------
+# Configure the options for player rewards for Nuggets.
+# -------------------------------------------------------------------------------------------
+Rewards:
+
+  # If true, player can upgrade for example from Tier 1 to Tier 4 directly, instead of
+  # having to upgrade to Tier 2 and Tier 3 beforehand.
+  Allow_Skipping_Tier: false
+
+  # Should the rewards menu display buttons to obtain blocks, items or packs?
+  # If false, the rewards menu jumps directly to class upgrade menu.
+  Enable_Material_Rewards: true
+
+  # Change the materials for the tabs in the rewards menu here.
+  #
+  # If you want to change the labels "Items" etc. to something else, use localization file.
+  Menu_Items:
+    Items: EMERALD
+    Blocks: OAK_LOG
+    Packs: WITHER_SKELETON_SKULL
+
+# -------------------------------------------------------------------------------------------
+# Each arena can be dynamically damaged by parts, and then restored back to normal once
+# the game finishes. To achieve this, you need to set up two snapshots of the arena:
+# an initial and the last, damaged snapshot). Configure the damage here:
+# -------------------------------------------------------------------------------------------
+Procedural_Damage:
+
+  # Enable realistic block damage with gravitational force?
+  Enabled: true
+
+  # Configure behaviour of the custom explosions created in the arena
+  Explosions:
+
+    # What is the radius in the circle we scan around the block that was exploded, to make
+    # the neighbor blocks fall? Careful, high values (>10) may freeze the server!
+    Gravitation_Range: 1
+
+    # The power of various explosion.
+    Power:
+
+      # By default, Creeper's explosion has the power of 3.0.
+      Creeper: 2.8
+
+      # By default, TnT's explosion power is 4.0.
+      TnT: 3.0
+
+    # Change how the exploded block hurts nearby entities. This is an extra damage alongside with default
+    # explosion damage, but for each block separately.
+    Damage:
+
+      # How many blocks around the EXPLODED BLOCK (not the explosion center) we should search for mobs
+      # and players?
+      Radius: 2
+      
+      # The extra damage given to mobs and players nearby (may kill them).
+      Damage: 2.2
+
+# -------------------------------------------------------------------------------------------
+# Configure different special items found in an arena.
+# -------------------------------------------------------------------------------------------
+Items:
+
+  # Configure the Bow that shoots Explosive Arrows. Get it via "/ma items".
+  Explosive_Bow:
+
+    # The power of the explosion created when an arrow lands. See Procedural_Damage.Explosions.
+    Damage: 2.1
+
+# -------------------------------------------------------------------------------------------
+# Here you can configure the clickable signs you may create within this plugin.
+# WARNING: Signs only support up to four (4) lines at maximum!
+# -------------------------------------------------------------------------------------------
+Signs:
+
+  # Allow creating the [classes] sign (write it on the top) that opens Class Selection Menu?
+  Allow_Classes_Sign: true
+
+  # These settings allow you to change the name of the sign in brackets, [].
+  # Place the label in [] on the first line.
+  Label:
+    Class: "class"
+    Classes: "classes"
+    Upgrade: "upgrade"
+    Power: "power"
+    Leave: "leave"
+    Rewards: "rewards"
+
+  # The sign that will automatically join player if the arena is not yet running.
+  Join_Sign_Format: |-
+    [&l{arena}&r]
+    {state}
+    &8{players}/{maxPlayers}
+
+  # The sign that will automatically leave player if they play in the arena.
+  Leave_Sign_Format: |-
+    [&lLeave&r]
+    Click to leave
+    {arena}
+
+  # The sign that will automatically give a class to the player (while waiting in lobby).
+  Class_Sign_Format: |-
+    [&lClass&r]
+    {class}
+
+  # The sign that creates an upgrade shop within the arena (usable while players are playing).
+  Upgrades_Sign_Format: |-
+    [&4Upgrade&r]
+    {upgrade}
+    {price}
+    &7Click to buy.
+
+# -------------------------------------------------------------------------------------------
+# We rely on WorldEdit for restoring arena snapshots. The bigger your arena is, the longer
+# it takes to restore a snapshot. Configure the settings according to your server hardware.
+# -------------------------------------------------------------------------------------------
+WorldEdit:
+
+  # To prevent server crashes, we split your map into parts each having the given amount
+  # of blocks. Each restore operation such as when players first join the arena is so split
+  # into parts each having the given amount of blocks. You can experiment with it to find
+  # what number reduces lags. The bigger your arenas the longer it takes to restore them so
+  # make sure your lobby wait duration is long enough!
+  Block_Bulk_Restore_Amount: 100_000
+  
+  # How long to wait between restoring each portion of the map? See above.
+  Wait_Period: 30 ticks
+  
+  # If you are getting severe memory leaks, set it to true.
+  # If you are getting java.io.IOException: Stream Closed, to set this to false to solve this.
+  Close_Stream: false
+
+# -------------------------------------------------------------------------------------------
+# An external database allows you to share the same data over multiple servers.
+# -------------------------------------------------------------------------------------------
+MySQL:
+  Enabled: false
+
+  # If your MySQL database is out of sync between your proxy servers,
+  # set Debug to [mysql] and look for "Updating MySQL data for x took y ms"
+  # Adjust this key to the amount of milliseconds + around 300 ms (6 ticks) for reserve (1 tick = 50 ms).
+  # Example: If MySQL takes 83 ms to synchronize, that is under 2 ticks + 6 ticks for reserve is 8.
+  Delay_Ticks: 10
+
+  Host: 'localhost'
+  Database: 'minecraft'
+  Port: '3306'
+  User: ''
+  Password: ''
+
+  # For very advanced users, you may customize the connector syntax to MySQL here.
+  Connector_Advanced: "jdbc:mysql://{host}:{port}/{database}?autoReconnect=true"
+
+# -------------------------------------------------------------------------------------------
+# We understand setting up arenas might take time and losing all the spawners is frustrating.
+# That is why we offer automatic backups of your data.yml file where all data is stored.
+# -------------------------------------------------------------------------------------------
+Backup:
+
+  # The frequency of backing up your data.yml to backup/ folder. Make sure to remove
+  # old backups yourself.
+  Frequency: 6 hours
+
+# -------------------------------------------------------------------------------------------
+# Aliases are alternative command names which trigger the same command as the main command.
+# Separate them with a comma, e.g: aliases: [arena, match]
+# * THE FIRST ALIAS IS THE MAIN LABEL, THAT MEANS AT LEAST ONE ALIAS MUST BE SPECIFIED. *
+# -------------------------------------------------------------------------------------------
+Command_Aliases: [arena, ma, mobarena, corearena, ca]
+
+# -------------------------------------------------------------------------------------------
+# Almost each message begins with a prefix, customize it here or set to "" to disable.
+# -------------------------------------------------------------------------------------------
+Prefix: "&5Arena //&7"
+
+# -------------------------------------------------------------------------------------------
+# What language should we use for messages? Use "/arena dumplocale" to move the file to your
+# plugin's folder so you can edit it easily.
+#
+# Available: en_US (English) 
+# -------------------------------------------------------------------------------------------
+Locale: en_US
+
+# -------------------------------------------------------------------------------------------
+# Debugging allows you to understand the plugin and how it works.
+#
+# Available sections: [arena, mysql, spawning, next-phase]
+# -------------------------------------------------------------------------------------------
+Debug: []
+
+# -------------------------------------------------------------------------------------------------
+# Send anonymized error reports to sentry.io? This helps us fix bugs without you needing to
+# report them manually.
+# -------------------------------------------------------------------------------------------------
+Sentry: true

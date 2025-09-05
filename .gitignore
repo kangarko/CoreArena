@@ -11,6 +11,7 @@
 out/
 
 target/
+library/
 
 #################
 ## Eclipse
@@ -47,10 +48,6 @@ local.properties
 # PDT-specific
 .buildpath
 
-# Builder
-builder.xml
-build.xml
-
 #############
 ## Windows detritus
 #############
@@ -68,5 +65,3 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 REBASE.bat
-
-library/

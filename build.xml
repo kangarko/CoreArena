@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<project name="CoreArena" default="Build">
+	<target name="Build">
+		<jar jarfile="/Users/kangarko/Test Servers/1.8.8/plugins/${ant.project.name}.jar" basedir="./target/classes/" includes="**/*">
+			<fileset dir="../Foundation/foundation-bukkit/target/classes" />
+			<fileset dir="../Foundation/foundation-core/target/classes" />
+		</jar>
+		<jar jarfile="/Users/kangarko/Test Servers/1.21/plugins/${ant.project.name}.jar" basedir="./target/classes/" includes="**/*">
+			<fileset dir="../Foundation/foundation-bukkit/target/classes" />
+			<fileset dir="../Foundation/foundation-core/target/classes" />
+		</jar>
+	</target>
+</project>
