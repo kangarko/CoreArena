@@ -176,7 +176,8 @@ final class StoredInventory implements ConfigSerializable {
 
 		Debugger.debug("inventory", "Restoring " + player.getName() + " inventory. Max health: " + this.maxHealth + " vs current: " + this.health);
 
-		CompAttribute.MAX_HEALTH.set(player, this.maxHealth);
+		if(Settings.Arena.RESTORE_SAVED_MAX_HEALTH)
+			CompAttribute.MAX_HEALTH.set(player, this.maxHealth);
 
 		try {
 			player.setHealthScaled(this.healthScaled);

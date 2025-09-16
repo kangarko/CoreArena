@@ -28,6 +28,7 @@ public final class Settings extends SimpleSettings {
 	public static final class Arena {
 
 		public static Boolean STORE_INVENTORIES = false;
+		public static Boolean RESTORE_SAVED_MAX_HEALTH;
 		public static Boolean GIVE_RANDOM_CLASS_IF_NOT_SELECTED;
 		public static Boolean KEEP_OWN_EQUIPMENT;
 		public static Boolean MOVE_FORGOTTEN_PLAYERS;
@@ -42,6 +43,7 @@ public final class Settings extends SimpleSettings {
 			setPathPrefix("Arena");
 
 			STORE_INVENTORIES = getBoolean("Store_Inventories");
+			RESTORE_SAVED_MAX_HEALTH = getBoolean("Restore_Saved_Max_Health");
 			GIVE_RANDOM_CLASS_IF_NOT_SELECTED = getBoolean("Give_Random_Class_If_Not_Selected");
 			KEEP_OWN_EQUIPMENT = getBoolean("Keep_Own_Equipment_On_Death");
 			MOVE_FORGOTTEN_PLAYERS = getBoolean("Move_Forgotten_Players");
