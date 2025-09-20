@@ -1,5 +1,6 @@
 package org.mineacademy.corearena.impl.arena;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
@@ -468,15 +469,18 @@ public abstract class SimpleArena implements Arena {
 			if (this.phase instanceof SimplePhaseIncremental)
 				((SimplePhaseIncremental) this.phase).restoreChests();
 
-			CommonCore.runTaskOrNow(this.settings.getEndCommandsDelay().getTimeTicks(), () -> {
+			final int endDelayTicks = this.settings.getEndCommandsDelay().getTimeTicks();
+			final Collection<Player> players = endDelayTicks > 0 ? new ArrayList<>(this.getPlayers()) : this.getPlayers();
+
+			CommonCore.runTaskOrNow(endDelayTicks, () -> {
 				if (cause.toString().startsWith("NATURAL")) {
 					if (this.settings.getNextPhaseMode() == NextPhaseMode.MONSTERS && cause == StopCause.NATURAL_COUNTDOWN) {
 						// Ignore cause
 					} else
-						this.settings.getFinishCommands().run(this, this.getPlayers(), Settings.Arena.CONSOLE_CMD_FOREACH);
+						this.settings.getFinishCommands().run(this, players, Settings.Arena.CONSOLE_CMD_FOREACH);
 				}
 
-				this.settings.getEndCommands().run(this, this.getPlayers(), Settings.Arena.CONSOLE_CMD_FOREACH);
+				this.settings.getEndCommands().run(this, players, Settings.Arena.CONSOLE_CMD_FOREACH);
 			});
 
 			try {
