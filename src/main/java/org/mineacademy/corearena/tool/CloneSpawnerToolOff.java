@@ -71,11 +71,6 @@ public final class CloneSpawnerToolOff extends Tool {
 	}
 
 	@Override
-	public boolean compareByNbt() {
-		return true;
-	}
-
-	@Override
 	public void onHotbarFocused(Player player) {
 	}
 

@@ -148,11 +148,6 @@ public final class CloneSpawnerToolOn extends Tool {
 	}
 
 	@Override
-	public boolean compareByNbt() {
-		return true;
-	}
-
-	@Override
 	public boolean ignoreCancelled() {
 		return false;
 	}
