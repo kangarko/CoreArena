@@ -546,18 +546,40 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 		}
 	}
 
+	private boolean validLocation(Location loc) {
+		final Arena locArena = CoreArenaPlugin.getArenaManager().findArena(loc);
+		if (locArena == null || !locArena.equals(this.arena))
+			return false;
+
+		final Block center = loc.getBlock();
+
+		for (int x = -1; x <= 1; x++) {
+			for (int y = 0; y <= 1; y++) {
+				for (int z = -1; z <= 1; z++) {
+					Block check = center.getRelative(x, y, z);
+					if (check.getType() != Material.AIR)
+						return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	private Location randomizeLocation(Location loc) {
-		final int tries = 20;
 		final int spread = this.arena.getSettings().getMobSpread();
+
+		if(spread <= 0)
+			return loc;
+
+		final int tries = 20;
 
 		Location newLoc = loc;
 
 		for (int i = 0; i < tries; i++) {
 			newLoc = newLoc.clone().add(this.getPositiveOrNegRandom() * Math.random() * (1 + RandomUtil.nextInt(spread)), 0, this.getPositiveOrNegRandom() * Math.random() * (1 + RandomUtil.nextInt(spread)));
 
-			final Block b = newLoc.getBlock();
-
-			if (b.getType() == Material.AIR && b.getRelative(BlockFace.UP).getType() == Material.AIR)
+			if (validLocation(newLoc)/*b.getType() == Material.AIR && b.getRelative(BlockFace.UP).getType() == Material.AIR*/)
 				return newLoc;
 		}
 

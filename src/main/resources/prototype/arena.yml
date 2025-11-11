@@ -50,6 +50,7 @@ Next_Phase_Mode: timer
 Next_Phase_Wait: 10 seconds
 
 # Radius around the mob spawner to spawn the mobs, so they aren't stacked up at once place.
+# To disable spreading, set to 0
 Mob_Spread: 3
 
 # Set to true to allow monsters to burn in sunlight like in vanilla gameplay.
