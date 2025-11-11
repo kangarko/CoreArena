@@ -603,6 +603,11 @@ public class InArenaListener implements Listener {
 
 				if (arena.getState() == ArenaState.RUNNING)
 					try {
+						if (!Settings.Items.DAMAGE_PLAYERS) {
+							event.setCancelled(true);
+							return;
+						}
+
 						this.playerDamagers.put(damaged.getUniqueId(), null);
 						arena.onPlayerBlockDamage(event, damaged, finalDmg);
 

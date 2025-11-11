@@ -196,8 +196,12 @@ public final class Settings extends SimpleSettings {
 
 	public static final class Items {
 
+		public static Boolean DAMAGE_PLAYERS;
+
 		private static void init() {
 			setPathPrefix("Items");
+
+			DAMAGE_PLAYERS = getBoolean("Damage_Players");
 		}
 
 		public static final class ExplosiveBow {
