@@ -569,7 +569,7 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 	private Location randomizeLocation(Location loc) {
 		final int spread = this.arena.getSettings().getMobSpread();
 
-		if(spread <= 0)
+		if (spread <= 0)
 			return loc;
 
 		final int tries = 20;
@@ -579,7 +579,7 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 		for (int i = 0; i < tries; i++) {
 			newLoc = newLoc.clone().add(this.getPositiveOrNegRandom() * Math.random() * (1 + RandomUtil.nextInt(spread)), 0, this.getPositiveOrNegRandom() * Math.random() * (1 + RandomUtil.nextInt(spread)));
 
-			if (validLocation(newLoc)/*b.getType() == Material.AIR && b.getRelative(BlockFace.UP).getType() == Material.AIR*/)
+			if (validLocation(newLoc))
 				return newLoc;
 		}
 
