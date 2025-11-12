@@ -246,6 +246,9 @@ Procedural_Damage:
 # -------------------------------------------------------------------------------------------
 Items:
 
+  # Whether items should damage players.
+  Damage_Players: true
+
   # Configure the Bow that shoots Explosive Arrows. Get it via "/ma items".
   Explosive_Bow:
 
