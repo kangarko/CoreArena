@@ -143,7 +143,8 @@ public final class PhysicalEngine extends SimpleRunnable {
 		if (typeName.equals("GRASS_BLOCK") || typeName.equals("GRASS") || type == CompMaterial.MYCELIUM.getMaterial())
 			block.setType(Material.DIRT);
 
-		final FallingBlock falling = block.getWorld().spawnFallingBlock(block.getLocation().add(0.5D, 0.0D, 0.5D), block.getType(), block.getData());
+		final FallingBlock falling = block.getWorld().spawn(block.getLocation().add(0.5D, 0.0D, 0.5D), FallingBlock.class);
+		falling.setBlockData(block.getBlockData());
 
 		falling.setDropItem(false);
 
@@ -182,7 +183,7 @@ public final class PhysicalEngine extends SimpleRunnable {
 	 * @return boolean
 	 */
 	private static boolean isBreakingFallingBlock(final Material material) {
-		return material.isTransparent() &&
+		return !material.isOccluding() &&
 				material != CompMaterial.NETHER_PORTAL.getMaterial() &&
 				material != CompMaterial.END_PORTAL.getMaterial() ||
 				material == CompMaterial.COBWEB.getMaterial() ||
@@ -211,7 +212,8 @@ public final class PhysicalEngine extends SimpleRunnable {
 		if (type == Material.AIR || !canExplode(type))
 			return;
 
-		final FallingBlock falling = block.getWorld().spawnFallingBlock(block.getLocation(), block.getData().getItemType(), block.getData().getData());
+		final FallingBlock falling = block.getWorld().spawn(block.getLocation(), FallingBlock.class);
+		falling.setBlockData(block.getBlockData());
 
 		final double x = MathUtil.range(velocity.getX(), -2, 2) * 0.5D; //0.15D + (b.getY() - startingPoint.getY()) * 0.03D;
 		final double y = Math.random(); //(block.getX() /*- startingPoint.getX()*/) * 0.1D;
