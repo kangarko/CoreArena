@@ -569,8 +569,12 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 	private Location randomizeLocation(Location loc) {
 		final int spread = this.arena.getSettings().getMobSpread();
 
-		if (spread <= 0)
+		if (spread <= 0) {
+			Debugger.debug("spawning", "Not spreading spawn location for monsters in " + this.arena.getName() + " since Mob_Spread is set to 0.");
 			return loc;
+		}
+
+		Debugger.debug("spawning", "Spreading spawn location for monsters in " + this.arena.getName() + ". Mob_Spread = " + spread);
 
 		final int tries = 20;
 
