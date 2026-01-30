@@ -11,7 +11,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Creature;
@@ -556,7 +555,7 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 		for (int x = -1; x <= 1; x++) {
 			for (int y = 0; y <= 1; y++) {
 				for (int z = -1; z <= 1; z++) {
-					Block check = center.getRelative(x, y, z);
+					final Block check = center.getRelative(x, y, z);
 					if (check.getType() != Material.AIR)
 						return false;
 				}
