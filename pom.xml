@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>org.mineacademy.plugin</groupId>
 			<artifactId>MythicMobs</artifactId>
-			<version>5.8.0</version>
+			<version>5.11.1-de409cac</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -83,7 +83,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.4.2</version>
+				<version>3.5.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
