@@ -377,7 +377,7 @@ Locale: en_US
 Debug: []
 
 # -------------------------------------------------------------------------------------------------
-# Send anonymized error reports to sentry.io? This helps us fix bugs without you needing to
+# Send anonymized error reports automatically? This helps us fix bugs without you needing to
 # report them manually.
 # -------------------------------------------------------------------------------------------------
-Sentry: true
+Error_Auto_Reporting: true
