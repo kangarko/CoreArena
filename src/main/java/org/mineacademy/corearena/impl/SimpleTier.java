@@ -54,6 +54,8 @@ public class SimpleTier implements ClassTier {
 			this.applyTierSpecificSettings(pl);
 
 		Platform.callEvent(new ClassObtainEvent(pl, CoreArenaPlugin.getClassManager().findClass(this.getClazzName()), this.tier));
+
+		pl.updateInventory();
 	}
 
 	private final void applyTierSpecificSettings(Player pl) {
