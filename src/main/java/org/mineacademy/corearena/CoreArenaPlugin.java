@@ -49,8 +49,8 @@ import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.menu.button.ButtonRemove;
 import org.mineacademy.fo.model.HookManager;
 import org.mineacademy.fo.model.Task;
-import org.mineacademy.fo.platform.Platform;
 import org.mineacademy.fo.platform.BukkitPlugin;
+import org.mineacademy.fo.platform.Platform;
 import org.mineacademy.fo.remain.Remain;
 
 import lombok.NonNull;
@@ -262,10 +262,10 @@ public final class CoreArenaPlugin extends BukkitPlugin implements ArenaPlugin {
 		return 2017;
 	}
 
-	@Override
+	/*@Override
 	public String getSentryDsn() {
 		return "https://c0abe3e98045cf4b85ab3bf062316a8a@o4508048573661184.ingest.us.sentry.io/4508052472659968";
-	}
+	}*/
 
 	@Override
 	public int getBuiltByBitId() {
