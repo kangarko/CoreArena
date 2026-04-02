@@ -389,6 +389,16 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 	}
 
 	private void spawnMobs() {
+		((SimpleArena) this.arena).setSpawningArenaMobs(true);
+
+		try {
+			this.doSpawnMobs();
+		} finally {
+			((SimpleArena) this.arena).setSpawningArenaMobs(false);
+		}
+	}
+
+	private void doSpawnMobs() {
 		final ArenaData data = this.arena.getData();
 		final World world = this.arena.getData().getRegion().getWorld();
 

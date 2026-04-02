@@ -103,6 +103,12 @@ public abstract class SimpleArena implements Arena {
 
 	private boolean stopping = false;
 
+	private boolean spawningArenaMobs = false;
+
+	public void setSpawningArenaMobs(boolean spawningArenaMobs) {
+		this.spawningArenaMobs = spawningArenaMobs;
+	}
+
 	public static final void clearRegisteredArenas() {
 		ArenaRegistry.unregisterAll(Platform.getPlugin().getName());
 	}
@@ -766,8 +772,12 @@ public abstract class SimpleArena implements Arena {
 	public final void onEntitySpawn(EntitySpawnEvent e) {
 		final Entity en = e.getEntity();
 
-		if (EntityUtil.isCreature(en))
+		if (EntityUtil.isCreature(en)) {
 			CompMetadata.setMetadata(en, "CoreTempEntity", "CoreTempEntity");
+
+			if (this.spawningArenaMobs)
+				CompMetadata.setMetadata(en, "CoreArenaSpawned", "true");
+		}
 	}
 
 	@Override
@@ -946,7 +956,7 @@ public abstract class SimpleArena implements Arena {
 		int alive = 0;
 
 		for (final Entity entity : this.data.getRegion().getEntities())
-			if (EntityUtil.isAggressive(entity) && !entity.hasMetadata("ae-entity")) { // Ignore AdvancedEnchantments-spawned mobs
+			if (EntityUtil.isAggressive(entity) && CompMetadata.hasMetadata(entity, "CoreArenaSpawned")) {
 				Debugger.debug("alive-monsters", "Counting alive monster: " + entity);
 
 				alive++;
