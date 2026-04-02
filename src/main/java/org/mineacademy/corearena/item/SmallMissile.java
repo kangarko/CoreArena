@@ -10,6 +10,7 @@ import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.menu.tool.Rocket;
 import org.mineacademy.fo.remain.CompItemFlag;
 import org.mineacademy.fo.remain.CompMaterial;
+import org.mineacademy.fo.settings.Lang;
 
 import lombok.Getter;
 
@@ -24,12 +25,11 @@ public final class SmallMissile extends Rocket {
 
 	@Override
 	public ItemStack getItem() {
-		return ItemCreator.from(CompMaterial.SNOWBALL,
-				"&bSmall Missile",
-				"",
-				"&7Click to launch",
-				"&7a small missile!")
+		return ItemCreator.fromMaterial(CompMaterial.SNOWBALL)
+				.name(Lang.legacy("item-small-missile-name"))
+				.lore(Lang.legacy("item-small-missile-lore"))
 				.flags(CompItemFlag.HIDE_ENCHANTS)
+				.hideTags(true)
 				.make();
 	}
 
