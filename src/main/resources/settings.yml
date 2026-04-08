@@ -196,6 +196,17 @@ Rewards:
   # If false, the rewards menu jumps directly to class upgrade menu.
   Enable_Material_Rewards: true
 
+  # When Enable_Material_Rewards is true, you can individually toggle
+  # which reward categories are shown in the /ma rewards menu.
+  Enable_Items: true
+  Enable_Blocks: true
+  Enable_Packs: true
+
+  # Should the rewards menu display the class upgrades button (diamond sword)?
+  # If false, the class upgrades button is hidden from the rewards menu.
+  # You can use /ma upgrade to open class upgrades directly.
+  Enable_Class_Upgrades: true
+
   # Change the materials for the tabs in the rewards menu here.
   #
   # If you want to change the labels "Items" etc. to something else, use localization file.

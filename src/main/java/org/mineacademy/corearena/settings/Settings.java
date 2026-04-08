@@ -218,6 +218,8 @@ public final class Settings extends SimpleSettings {
 
 	public static final class Rewards {
 		public static Boolean ALLOW_TIER_SKIP, ENABLE_MATERIAL_REWARDS;
+		public static Boolean ENABLE_ITEMS, ENABLE_BLOCKS, ENABLE_PACKS;
+		public static Boolean ENABLE_CLASS_UPGRADES;
 		public static CompMaterial ITEMS, BLOCKS, PACKS;
 
 		private static void init() {
@@ -225,6 +227,10 @@ public final class Settings extends SimpleSettings {
 
 			ALLOW_TIER_SKIP = getBoolean("Allow_Skipping_Tier");
 			ENABLE_MATERIAL_REWARDS = getBoolean("Enable_Material_Rewards");
+			ENABLE_ITEMS = getBoolean("Enable_Items");
+			ENABLE_BLOCKS = getBoolean("Enable_Blocks");
+			ENABLE_PACKS = getBoolean("Enable_Packs");
+			ENABLE_CLASS_UPGRADES = getBoolean("Enable_Class_Upgrades");
 
 			setPathPrefix("Rewards.Menu_Items");
 

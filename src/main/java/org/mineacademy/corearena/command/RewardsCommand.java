@@ -32,8 +32,11 @@ final class RewardsCommand extends AbstractCoreSubcommand {
 	public static boolean canAccessMenu(Player player) throws CommandException {
 		final ArenaPlayer data = CoreArenaPlugin.getDataFor(player);
 
-		if (data.hasArenaCache())
+		if (data.hasArenaCache()) {
 			Messenger.error(player, Lang.component("menu-cannot-open-in-arena"));
+
+			return false;
+		}
 
 		return true;
 	}

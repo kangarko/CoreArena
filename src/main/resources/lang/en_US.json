@@ -218,6 +218,7 @@
   "menu-rewards-tier-show-inventory": "<white><bold>-> <white>Show Inventory",
   "menu-rewards-tier-too-high": "<dark_red>This tier is too high for you!",
   "menu-rewards-tier-top": "<red>This is the top tier",
+  "menu-rewards-disabled": "<red>Rewards are currently disabled.",
   "menu-use-class-menu": "<red>Please use the class menu to edit class upgrades",
   "part-buy": "Buy",
   "part-cost": "Cost",

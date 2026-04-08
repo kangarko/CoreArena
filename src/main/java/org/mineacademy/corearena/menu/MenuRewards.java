@@ -64,12 +64,31 @@ public class MenuRewards extends Menu {
 	private final Button tiersButton;
 
 	public static void showRewardsMenu(Player player, MenuMode mode) {
-		if (Settings.Rewards.ENABLE_MATERIAL_REWARDS)
+		final boolean isEditing = mode != MenuMode.PURCHASE;
+		final boolean hasMaterialCategories = Settings.Rewards.ENABLE_MATERIAL_REWARDS
+				&& (isEditing || Settings.Rewards.ENABLE_ITEMS || Settings.Rewards.ENABLE_BLOCKS || Settings.Rewards.ENABLE_PACKS);
+
+		if (hasMaterialCategories)
 			new MenuRewards(player, mode).displayTo(player);
-		else if (mode == MenuMode.PURCHASE)
-			new MenuRewards(player, mode).showTierMenu(player);
-		else
+
+		else if (mode == MenuMode.PURCHASE) {
+			if (Settings.Rewards.ENABLE_CLASS_UPGRADES)
+				new MenuRewards(player, mode).showTierMenu(player);
+			else
+				Common.tell(player, Lang.component("menu-rewards-disabled"));
+
+		} else
 			Common.tell(player, Lang.component("menu-use-class-menu"));
+	}
+
+	public static void showUpgradeMenu(Player player) {
+		if (!Settings.Rewards.ENABLE_CLASS_UPGRADES) {
+			Common.tell(player, Lang.component("menu-rewards-disabled"));
+
+			return;
+		}
+
+		new MenuRewards(player, MenuMode.PURCHASE).showTierMenu(player, null);
 	}
 
 	private MenuRewards(Player player, MenuMode mode) {
@@ -99,7 +118,7 @@ public class MenuRewards extends Menu {
 				.name("&f&l" + this.getBuyOrEdit(Lang.legacy("menu-rewards-packs")))
 				.lore(Lang.legacy("menu-rewards-packs-description")));
 
-		this.tiersButton = mode == MenuMode.PURCHASE ? new Button() {
+		this.tiersButton = mode == MenuMode.PURCHASE && Settings.Rewards.ENABLE_CLASS_UPGRADES ? new Button() {
 
 			@Override
 			public ItemStack getItem() {
@@ -120,7 +139,11 @@ public class MenuRewards extends Menu {
 	}
 
 	private void showTierMenu(Player pl) {
-		final MenuClasses classMenu = new MenuClasses(MenuRewards.this) {
+		this.showTierMenu(pl, MenuRewards.this);
+	}
+
+	private void showTierMenu(Player pl, Menu parent) {
+		final MenuClasses classMenu = new MenuClasses(parent) {
 
 			@Override
 			protected String getCustomTitle() {
@@ -621,13 +644,15 @@ public class MenuRewards extends Menu {
 	public ItemStack getItemAt(int slot) {
 
 		if (Settings.Rewards.ENABLE_MATERIAL_REWARDS) {
-			if (slot == 9 * 1 + 4)
+			final boolean isEditing = this.mode != MenuMode.PURCHASE;
+
+			if (slot == 9 * 1 + 4 && (isEditing || Settings.Rewards.ENABLE_BLOCKS))
 				return this.blocksButton.getItem();
 
-			if (slot == 9 * 2 + 2)
+			if (slot == 9 * 2 + 2 && (isEditing || Settings.Rewards.ENABLE_ITEMS))
 				return this.itemsButton.getItem();
 
-			if (slot == 9 * 2 + 6)
+			if (slot == 9 * 2 + 6 && (isEditing || Settings.Rewards.ENABLE_PACKS))
 				return this.packsButton.getItem();
 
 			if (slot == 9 * 3 + 4)
