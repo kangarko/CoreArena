@@ -24,6 +24,8 @@ import org.bukkit.inventory.ItemStack;
 import org.mineacademy.corearena.CoreArenaPlugin;
 import org.mineacademy.corearena.countdown.PhaseCountdown;
 import org.mineacademy.corearena.data.AllData.ArenaPlayer.ClassCache;
+import org.mineacademy.corearena.event.ArenaPhaseEndEvent;
+import org.mineacademy.corearena.event.ArenaPhaseStartEvent;
 import org.mineacademy.corearena.hook.CoreHookManager;
 import org.mineacademy.corearena.impl.arena.SimpleArena;
 import org.mineacademy.corearena.model.Arena;
@@ -75,6 +77,8 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 	private final boolean monstersMode;
 
 	private int phase = 1;
+
+	private boolean phaseActive = false;
 
 	private boolean startedToCountNextPhase = false;
 
@@ -201,6 +205,9 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 			}
 		}
 
+		Platform.callEvent(new ArenaPhaseEndEvent(this.arena, this.phase));
+		this.phaseActive = false;
+
 		this.phase++;
 
 		// Check if not last
@@ -224,6 +231,9 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 			this.spawnMobs();
 
 			this.arena.getSettings().getPhaseStartCommands().run(this.arena, this.arena.getPlayers(), Settings.Arena.CONSOLE_CMD_FOREACH);
+
+			Platform.callEvent(new ArenaPhaseStartEvent(this.arena, this.phase));
+			this.phaseActive = true;
 		}
 
 		{ // Rewards
@@ -618,6 +628,9 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 		for (final Player player : this.arena.getPlayers())
 			this.bossBar.showTo(player);
 
+		Platform.callEvent(new ArenaPhaseStartEvent(this.arena, this.phase));
+		this.phaseActive = true;
+
 		{ // Rewards: Support 1st wave
 			this.giveRewards(this.arena.getSettings().getRewardsOnWave(), true);
 			this.giveRewards(this.arena.getSettings().getRewardsEveryWave(), false);
@@ -626,9 +639,13 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 
 	@Override
 	public void stopAndReset() {
+		if (this.phaseActive)
+			Platform.callEvent(new ArenaPhaseEndEvent(this.arena, this.phase));
+
 		if (this.countdown.isRunning())
 			this.countdown.cancel();
 
+		this.phaseActive = false;
 		this.phase = 1;
 		this.waitedBetweenNextPhase = 0;
 
