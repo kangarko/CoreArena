@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.UUID;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -102,6 +103,12 @@ public abstract class SimpleArena implements Arena {
 	private LaunchCountdown launchCountdown;
 
 	private boolean stopping = false;
+
+	private final Set<UUID> arenaSpawnedMobs = new HashSet<>();
+
+	public void registerArenaMob(Entity entity) {
+		this.arenaSpawnedMobs.add(entity.getUniqueId());
+	}
 
 	public static final void clearRegisteredArenas() {
 		ArenaRegistry.unregisterAll(Platform.getPlugin().getName());
@@ -509,6 +516,8 @@ public abstract class SimpleArena implements Arena {
 		for (final Entity en : this.getData().getRegion().getEntities())
 			if (en != null && (EntityUtil.isAggressive(en) || EntityUtil.canBeCleaned(en) || CompMetadata.hasMetadata(en, "CoreTempEntity")))
 				en.remove();
+
+		this.arenaSpawnedMobs.clear();
 	}
 
 	protected abstract void handleArenaPostStop(StopCause cause);
@@ -772,6 +781,8 @@ public abstract class SimpleArena implements Arena {
 
 	@Override
 	public void onEntityDeath(EntityDeathEvent e) {
+		this.arenaSpawnedMobs.remove(e.getEntity().getUniqueId());
+
 		final boolean allMonstersKilled = this.getAliveMonsters() == 0;
 		final int endClear = this.settings.getEndPhaseNoMonsters();
 
@@ -946,7 +957,7 @@ public abstract class SimpleArena implements Arena {
 		int alive = 0;
 
 		for (final Entity entity : this.data.getRegion().getEntities())
-			if (EntityUtil.isAggressive(entity) && !entity.hasMetadata("ae-entity")) { // Ignore AdvancedEnchantments-spawned mobs
+			if (this.arenaSpawnedMobs.contains(entity.getUniqueId())) {
 				Debugger.debug("alive-monsters", "Counting alive monster: " + entity);
 
 				alive++;

@@ -36,8 +36,8 @@ public class CoreHookManager {
 
 	// ------------------ delegate methods, reason it's here = prevent errors when class loads but plugin is missing
 
-	public static boolean tryMythicalSpawn(ItemStack item, Location location) {
-		return HookManager.isMythicMobsLoaded() ? mythicMobs.tryMythicalSpawn(item, location) : false;
+	public static Entity tryMythicalSpawn(ItemStack item, Location location) {
+		return HookManager.isMythicMobsLoaded() ? mythicMobs.tryMythicalSpawn(item, location) : null;
 	}
 
 	public static LivingEntity tryBOSSSpawn(ItemStack item, Location location) {
@@ -59,10 +59,10 @@ public class CoreHookManager {
 
 class MythicMobsHook {
 
-	final boolean tryMythicalSpawn(ItemStack item, Location location) {
+	final Entity tryMythicalSpawn(ItemStack item, Location location) {
 
 		if (item == null || !item.hasItemMeta())
-			return false;
+			return null;
 
 		Debugger.debug("spawning", "Trying to spawn MythicMob at " + SerializeUtil.serializeLocation(location) + " from " + item);
 		final io.lumine.mythic.api.mobs.MythicMob mythicMob;
@@ -74,17 +74,17 @@ class MythicMobsHook {
 			Common.warning("MythicMob integration failed, check if your MythicMobs is on the latest version and if it is, nag the authors of " + Platform.getPlugin().getName() + " to update.");
 			err.printStackTrace();
 
-			return false;
+			return null;
 		}
 
 		if (mythicMob != null) {
-			mythicMob.spawn(new AbstractLocation(io.lumine.mythic.bukkit.utils.serialize.Position.of(location.clone().add(0, 1, 0))), 1);
+			final io.lumine.mythic.core.mobs.ActiveMob activeMob = mythicMob.spawn(new AbstractLocation(io.lumine.mythic.bukkit.utils.serialize.Position.of(location.clone().add(0, 1, 0))), 1);
 
-			return true;
+			return activeMob != null ? activeMob.getEntity().getBukkitEntity() : null;
 		}
 
 		Debugger.debug("spawning", "Spawning MythicMob at " + SerializeUtil.serializeLocation(location) + " failed. ");
-		return false;
+		return null;
 	}
 
 	public io.lumine.mythic.api.mobs.MythicMob getMythicMobFromEgg(final ItemStack eggItem) {

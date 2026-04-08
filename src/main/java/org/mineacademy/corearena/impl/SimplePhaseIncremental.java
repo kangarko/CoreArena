@@ -495,27 +495,29 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 					Debugger.debug("\t", "Custom ? " + spawnedEntity.isCustom());
 
 					if (spawnedEntity.isCustom()) {
-						if (HookManager.isMythicMobsLoaded() && CoreHookManager.tryMythicalSpawn(spawnedEntity.getCustomItem(), randomLoc)) {
+						if (HookManager.isMythicMobsLoaded())
+							spawned = CoreHookManager.tryMythicalSpawn(spawnedEntity.getCustomItem(), randomLoc);
+
+						if (spawned != null) {
 							Debugger.debug("spawning", "\t\tSUCCESS - handled in MythicMobs");
 
-							continue;
-						}
+						} else {
+							if (HookManager.isBossLoaded())
+								spawned = CoreHookManager.tryBOSSSpawn(spawnedEntity.getCustomItem(), randomLoc);
 
-						if (HookManager.isBossLoaded())
-							spawned = CoreHookManager.tryBOSSSpawn(spawnedEntity.getCustomItem(), randomLoc);
+							if (spawned == null) {
+								final String customType = CompMetadata.getMetadata(spawnedEntity.getCustomItem(), "CoreArenaMob");
+								final EntityType eggMob = customType != null ? CompEntityType.fromName(customType) : CompMonsterEgg.lookupEntity(spawnedEntity.getCustomItem());
 
-						if (spawned == null) {
-							final String customType = CompMetadata.getMetadata(spawnedEntity.getCustomItem(), "CoreArenaMob");
-							final EntityType eggMob = customType != null ? CompEntityType.fromName(customType) : CompMonsterEgg.lookupEntity(spawnedEntity.getCustomItem());
+								Debugger.debug("spawning", "\tTrying from custom egg (corearena tag = " + customType + ", detected mob = " + eggMob + ")");
 
-							Debugger.debug("spawning", "\tTrying from custom egg (corearena tag = " + customType + ", detected mob = " + eggMob + ")");
+								if (eggMob != null) {
+									spawned = randomLoc.getWorld().spawnEntity(randomLoc, eggMob);
 
-							if (eggMob != null) {
-								spawned = randomLoc.getWorld().spawnEntity(randomLoc, eggMob);
-
-								Debugger.debug("spawning", "\t\tSUCCESS - spawning from custom egg - " + eggMob);
-							} else
-								Debugger.debug("spawning", "\t\tFAIL - unknown custom egg = " + spawnedEntity);
+									Debugger.debug("spawning", "\t\tSUCCESS - spawning from custom egg - " + eggMob);
+								} else
+									Debugger.debug("spawning", "\t\tFAIL - unknown custom egg = " + spawnedEntity);
+							}
 						}
 					}
 
@@ -543,6 +545,7 @@ public final class SimplePhaseIncremental implements ArenaPhase {
 					}
 
 					Valid.checkNotNull(spawned, "Failed to spawn " + spawnedEntity + " in " + this.arena.getName());
+					((SimpleArena) this.arena).registerArenaMob(spawned);
 
 					if (spawned instanceof Creature) {
 						final Player target = ((SimpleArena) this.arena).getNearestPlayer(spawned.getLocation());
