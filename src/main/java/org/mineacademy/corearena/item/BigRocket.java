@@ -16,6 +16,7 @@ import org.mineacademy.fo.remain.CompItemFlag;
 import org.mineacademy.fo.remain.CompMaterial;
 import org.mineacademy.fo.remain.CompParticle;
 import org.mineacademy.fo.remain.CompSound;
+import org.mineacademy.fo.settings.Lang;
 
 import lombok.Getter;
 
@@ -31,13 +32,10 @@ public final class BigRocket extends Rocket {
 	@Override
 	public ItemStack getItem() {
 		return ItemCreator.fromMaterial(CompMaterial.ENDER_PEARL)
-				.name("&3Rocket")
+				.name(Lang.legacy("item-rocket-name"))
 				.enchant(CompEnchantment.DURABILITY)
 				.flags(CompItemFlag.HIDE_ENCHANTS)
-				.lore(
-						"",
-						"&7Click to launch",
-						"&7a rocket!")
+				.lore(Lang.legacy("item-rocket-lore").split("\n", -1))
 				.make();
 	}
 

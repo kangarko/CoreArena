@@ -67,12 +67,10 @@ public final class HellFire extends Tool {
 	@Override
 	public ItemStack getItem() {
 		return ItemCreator.fromMaterial(CompMaterial.LEVER)
-				.name("&CCall Hell-Fire")
+				.name(Lang.legacy("item-hellfire-name"))
 				.enchant(CompEnchantment.DURABILITY, 1)
 				.flags(CompItemFlag.HIDE_ENCHANTS)
-				.lore("",
-						"&fLeft click &7a block",
-						"&7to call a Hell-File!")
+				.lore(Lang.legacy("item-hellfire-lore").split("\n", -1))
 				.make();
 	}
 

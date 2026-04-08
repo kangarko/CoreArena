@@ -5,6 +5,7 @@ import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompEnchantment;
 import org.mineacademy.fo.remain.CompItemFlag;
 import org.mineacademy.fo.remain.CompMaterial;
+import org.mineacademy.fo.settings.Lang;
 
 import lombok.Getter;
 
@@ -21,13 +22,10 @@ public final class ExplosiveArrow {
 
 	{
 		this.itemStack = ItemCreator.fromMaterial(CompMaterial.ARROW)
-				.name("&4Explosive Arrow")
+				.name(Lang.legacy("item-explosive-arrow-name"))
 				.enchant(CompEnchantment.DURABILITY)
 				.flags(CompItemFlag.HIDE_ENCHANTS)
-				.lore(
-						"",
-						"&7The ammunition used",
-						"&7by &5Explosive Bow.")
+				.lore(Lang.legacy("item-explosive-arrow-lore").split("\n", -1))
 				.make();
 	}
 

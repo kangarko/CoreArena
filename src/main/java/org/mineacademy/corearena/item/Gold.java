@@ -13,6 +13,7 @@ import org.mineacademy.fo.remain.CompEnchantment;
 import org.mineacademy.fo.remain.CompItemFlag;
 import org.mineacademy.fo.remain.CompMaterial;
 import org.mineacademy.fo.remain.Remain;
+import org.mineacademy.fo.settings.Lang;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,11 +27,10 @@ public final class Gold extends Tool {
 
 	@Override
 	public ItemStack getItem() {
-		return ItemCreator.from(CompMaterial.GOLD_NUGGET,
-				"&6Gold",
-				"",
-				"&7Right click to sell",
-				"&71x Gold for " + this.getCurrencyName(Settings.Experience.Gold.CONVERSION_RATIO))
+		return ItemCreator.fromMaterial(CompMaterial.GOLD_NUGGET)
+				.name(Lang.legacy("item-gold-name"))
+				.hideTags(true)
+				.lore(Lang.legacy("item-gold-lore", "price", this.getCurrencyName(Settings.Experience.Gold.CONVERSION_RATIO)).split("\n", -1))
 				.enchant(CompEnchantment.ARROW_INFINITE, 1)
 				.flags(CompItemFlag.HIDE_ENCHANTS)
 				.tag("CoreArena_Gold", "true")
@@ -58,7 +58,7 @@ public final class Gold extends Tool {
 		final Player player = event.getPlayer();
 
 		HookManager.deposit(player, Settings.Experience.Gold.CONVERSION_RATIO);
-		Common.tell(player, "&7You sold 1x Gold for &6" + this.getCurrencyName(Settings.Experience.Gold.CONVERSION_RATIO) + " &7and now have &6" + this.getCurrencyName(MathUtil.formatTwoDigitsD(HookManager.getBalance(player))) + "&7.");
+		Common.tell(player, Lang.legacy("item-gold-sold", "price", this.getCurrencyName(Settings.Experience.Gold.CONVERSION_RATIO), "balance", this.getCurrencyName(MathUtil.formatTwoDigitsD(HookManager.getBalance(player)))));
 
 		Remain.takeHandItem(player);
 		event.setCancelled(true);
