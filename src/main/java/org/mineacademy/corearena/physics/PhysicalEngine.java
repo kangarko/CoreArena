@@ -18,6 +18,7 @@ import org.mineacademy.corearena.model.Arena;
 import org.mineacademy.corearena.util.FallingLimitter;
 import org.mineacademy.fo.BlockUtil;
 import org.mineacademy.fo.MathUtil;
+import org.mineacademy.fo.MinecraftVersion;
 import org.mineacademy.fo.RandomUtil;
 import org.mineacademy.fo.ReflectionUtil;
 import org.mineacademy.fo.model.SimpleRunnable;
@@ -157,7 +158,9 @@ public final class PhysicalEngine extends SimpleRunnable {
 			Block below = block.getRelative(BlockFace.DOWN);
 
 			// Check downwards and break any obstructing blocks
-			for (int y = current.getY(); y > 0; y--) {
+			final int minHeight = MinecraftVersion.atLeast(MinecraftVersion.V.v1_18) ? block.getWorld().getMinHeight() : 0;
+
+			for (int y = current.getY(); y > minHeight; y--) {
 
 				// Only breaks if the block below is solid and the block on top is transparent
 				if (below.getType().isSolid()) {
