@@ -78,10 +78,12 @@ public final class ArenaCommands {
 	private void runConsole(Arena arena, Collection<Player> players, boolean consoleForEach) {
 		for (final String command : this.consoleCommands) {
 			final String coloredCommand = CompChatColor.translateColorCodes(arena.getMessenger().replaceVariables(command));
+			final boolean requiresPlayer = command.startsWith("@announce ") || command.startsWith("@warn ") || command.startsWith("@error ")
+					|| command.startsWith("@info ") || command.startsWith("@question ") || command.startsWith("@success ");
 
-			if (consoleForEach)
+			if (consoleForEach || requiresPlayer)
 				for (final Player player : players)
-					Platform.dispatchConsoleCommand(null, coloredCommand.replace("{player}", player.getName()));
+					Platform.dispatchConsoleCommand(Platform.toPlayer(player), coloredCommand.replace("{player}", player.getName()));
 
 			else
 				Platform.dispatchConsoleCommand(null, coloredCommand);
@@ -139,7 +141,7 @@ public final class ArenaCommands {
 				ProxyUtil.sendBungeeMessage(player, "Connect", coloredCommand.replaceFirst("@connect ", ""));
 
 			else
-				Platform.dispatchConsoleCommand(null, coloredCommand);
+				Platform.dispatchConsoleCommand(Platform.toPlayer(player), coloredCommand);
 		}
 	}
 }
