@@ -79,9 +79,9 @@ public final class ArenaCommands {
 		for (final String command : this.consoleCommands) {
 			final String coloredCommand = CompChatColor.translateColorCodes(arena.getMessenger().replaceVariables(command));
 
-			if (consoleForEach)
+			if (consoleForEach || coloredCommand.startsWith("@"))
 				for (final Player player : players)
-					Platform.dispatchConsoleCommand(null, coloredCommand.replace("{player}", player.getName()));
+					Platform.dispatchConsoleCommand(Platform.toPlayer(player), coloredCommand.replace("{player}", player.getName()));
 
 			else
 				Platform.dispatchConsoleCommand(null, coloredCommand);
@@ -139,7 +139,7 @@ public final class ArenaCommands {
 				ProxyUtil.sendBungeeMessage(player, "Connect", coloredCommand.replaceFirst("@connect ", ""));
 
 			else
-				Platform.dispatchConsoleCommand(null, coloredCommand);
+				Platform.dispatchConsoleCommand(Platform.toPlayer(player), coloredCommand);
 		}
 	}
 }
