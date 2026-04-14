@@ -20,6 +20,8 @@ final class RewardsCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		if (this.args.length != 0)
 			this.returnTell(Lang.legacy("part-usage") + "/" + this.getLabel() + " " + this.getSublabel());
 

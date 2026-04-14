@@ -21,6 +21,8 @@ final class EggCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final String mobName = Common.joinRange(0, this.args);
 
 		final EntityType type = CompEntityType.fromName(mobName);

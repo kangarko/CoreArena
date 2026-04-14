@@ -16,6 +16,8 @@ final class ToggleCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final Player player = this.getPlayer();
 		final String arenaName = this.args.length == 1 ? this.args[0] : "";
 

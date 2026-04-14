@@ -30,6 +30,8 @@ final class MenuCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		if (!this.canAccessMenu())
 			return;
 

@@ -18,6 +18,8 @@ final class NewCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final String name = this.args[0];
 
 		if (!mayCreate(this.getPlayer(), name))

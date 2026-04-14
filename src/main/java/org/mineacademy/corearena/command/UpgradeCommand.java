@@ -13,6 +13,8 @@ final class UpgradeCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		if (!RewardsCommand.canAccessMenu(this.getPlayer()))
 			return;
 

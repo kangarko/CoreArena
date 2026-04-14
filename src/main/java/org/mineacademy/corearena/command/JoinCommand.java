@@ -22,6 +22,8 @@ final class JoinCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final String arenaName = this.args.length > 0 ? this.args[0] : null;
 		Arena arena = arenaName != null ? this.getArena(arenaName) : this.getArenas().findArena(this.getPlayer().getLocation());
 

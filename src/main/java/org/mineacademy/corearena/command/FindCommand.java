@@ -23,6 +23,8 @@ final class FindCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final ArenaManager manager = this.getArenas();
 		Arena arena;
 

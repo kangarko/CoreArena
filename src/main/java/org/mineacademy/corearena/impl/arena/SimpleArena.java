@@ -150,7 +150,7 @@ public abstract class SimpleArena implements Arena {
 
 		} catch (final Throwable t) {
 			Common.error(t,
-					"Error while joining " + player.getName() + " to " + this.getName(),
+					"Error while joining " + (player != null ? player.getName() : "null") + " to " + this.getName(),
 					"Arena has been stopped for safety.",
 					"Error: {error}");
 

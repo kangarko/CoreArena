@@ -15,6 +15,8 @@ final class LeaveCommand extends AbstractCoreSubcommand {
 
 	@Override
 	protected void onCommand() {
+		this.checkConsole();
+
 		final Arena arena = this.getArenas().findArena(this.getPlayer());
 		this.checkNotNull(arena, Lang.component("command-leave-not-playing"));
 
